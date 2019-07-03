@@ -1,35 +1,57 @@
 public class No_Moon_Planet {
     private double diameter;
     private double mass;
-    private int distance_sun;
-    private int distance_earth;
+    private String name;
 
-    public No_Moon_Planet(double diameter, double mass, int distance_sun, int distance_earth) {
+    public No_Moon_Planet(double diameter, double mass,String name) {
         this.diameter = diameter;
         this.mass = mass;
-        this.distance_sun = distance_sun;
-        this.distance_earth = distance_earth;
+        this.name = name;
     }
 
-    public No_Moon_Planet(double diameter, double mass) {
+    public No_Moon_Planet(String name) {
+        this.name = name;
+    }
+
+    public double getDiameter() {
+        return diameter;
+    }
+
+    public void setDiameter(double diameter) {
         this.diameter = diameter;
+    }
+
+    public double getMass() {
+        return mass;
+    }
+
+    public void setMass(double mass) {
         this.mass = mass;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void orbit_sim(Satellite satellite) {
         calc_sat_parameters(satellite);
+        System.out.println("\n");
         orbit_return(satellite);
 
     }
 
     private void calc_sat_parameters(Satellite satellite) {
-        if (satellite.getOrbit_distance() == 0) {
+        if (satellite.getOrbit_from_surface() == 0) {
             double orbit_distance = Laws.calc_Distance(satellite.getVelocity(), mass);
             satellite.setOrbit_distance(orbit_distance);
         } else {
             //For calculations r is the distance to te center of the planet not it's surface.
             // This makes sure the right values are used
-            satellite.setOrbit_distance(satellite.getOrbit_distance() + diameter);
+            satellite.setOrbit_distance(satellite.getOrbit_from_surface() + diameter);
         }
 
         if (satellite.getVelocity() == 0) {
