@@ -1,8 +1,10 @@
+package Frontend;
+
 public class Round {
     public static String round(double value) {
 
-        String textfrom = Double.toString(value);
-        String[] decimal_split = textfrom.split("\\.");
+        String text_form = Double.toString(value);
+        String[] decimal_split = text_form.split("\\.");
         String before_decimal = decimal_split[0];
 
         int length = before_decimal.length();
@@ -15,7 +17,7 @@ public class Round {
         }
         else if (length == 1){
 
-            String[] new_text = textfrom.split("E");
+            String[] new_text = text_form.split("E");
 
             if(new_text.length != 1) {
 
@@ -50,6 +52,7 @@ public class Round {
             return String.format("%.3f", value);
         }
     }
+
 
     private static boolean check_if_decimals_zero(double value){
         String a =  String.format("%.3f", value);

@@ -1,3 +1,5 @@
+package Backend;
+
 public class Satellite {
     private double mass;
     private double velocity;
@@ -18,20 +20,12 @@ public class Satellite {
         return orbit_from_surface;
     }
 
-    public void setOrbit_from_surface(double orbit_from_surface) {
-        this.orbit_from_surface = orbit_from_surface;
-    }
-
     public String getName() {
         return name;
     }
 
     public double getMass() {
         return mass;
-    }
-
-    public void setMass(double mass) {
-        this.mass = mass;
     }
 
     public double getVelocity() {

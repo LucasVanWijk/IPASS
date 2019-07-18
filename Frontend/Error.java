@@ -1,3 +1,5 @@
+package Frontend;
+
 import javafx.stage.*;
 import javafx.scene.*;
 import javafx.scene.layout.*;
@@ -26,7 +28,7 @@ public class Error {
     public static void zero_mass(){
         String title = "Zero mass";
         String message = "Your mass is zero." +
-                " However mass is not someting that can be calculated. \n" +
+                " However mass is not something that can be calculated. \n" +
                 " because it is on no affect of the force pulling it to the planet. \n" +
                 "You can test this by filling in a very high mass and a very low mass \n " +
                 "the result will be the same ";
