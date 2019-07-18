@@ -1,3 +1,7 @@
+import Backend.Laws;
+import Backend.No_Moon_Planet;
+import Backend.Satellite;
+import javafx.animation.PathTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -5,59 +9,53 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 
 import java.util.HashMap;
-import java.util.Map;
 
 
 public class Main extends Application implements EventHandler<ActionEvent> {
 
-    Button venus;
-    Button mercury;
-    Button self_made_planet;
+    private Button venus;
+    private Button mercury;
+    private Button self_made_planet;
 
-    Button  mariner_5;
-    Button  bepicolombo;
-    Button  messenger;
-    Button  new_horizons;
-    Button  voyager;
-    Button  pioneer_11;
-    Button  falcon_heavy;
-    Button  falcon_9;
+    private TextField mass = new TextField();
 
-    TextField mass = new TextField();
-//    TextField mass_selfmade_planet = new TextField();
-//    TextField radius_selfmade_planet;
+    private String sat_non_custom_name = "default";
 
-    String sat_non_custom_name = "default";
+    private No_Moon_Planet to_calc_planet = new No_Moon_Planet(1,1,"default");
+    private Satellite to_calc_sat = new Satellite(0,0,0,"default");
 
+    private double scale_in_km;
+    private int pixel_width;
+    private int pixel_height;
+    private double diameter_screen;
 
-    No_Moon_Planet to_calc_planet = new No_Moon_Planet(1,1,"default");
-    Satellite to_calc_sat = new Satellite(0,0,0,"default");
-
-    Stage window;
-    BorderPane border;
+    private Stage window;
+    private BorderPane border;
 
     public static void main(String[] args) {
         launch(args);
-
 
     }
 
     public void start(Stage primaryStage) throws Exception {
 
+        primaryStage.setMaximized(true);
         window = primaryStage;
         window.setTitle("James");
 
@@ -69,16 +67,24 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 
 
         Scene s = new Scene(border);
-        primaryStage.setMaximized(true);
+
         window.setScene(s);
         window.show();
 
     }
 
 
+    /**
+     * Returns a menu which will be displayed on the top of the screen.
+     * <P>
+     *     This menu will contain a warning message, textfields to specify the parameters of the satellite,
+     *     a textfield to specify which value needs to be calculated and a button to save this satellite.
+     *     The elements will be stacked vertically. (VBox lays out it children vertically)
+     * </P>
+     *
+     * @return A VBox containg all elements for the top menu
+     */
     private VBox create_top_menu() {
-
-
         /*
         "warning" Displays a waring massage in the hopes of preventing the user from filling in incompatible variables.
         The message has to be displayed above the textfield for aesthetic reasons.
@@ -89,17 +95,17 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         Text warning = new Text("Please fill in the values as a number." +
                 " Scientific units are not necessary and will result in a error." +
                 " Decimal numbers should be typed with a dot like so 2.0" +
-                " Mass should alway be filled in because it cannot be calculated");
+                " Mass should always be filled in because it can't be calculated");
 
         warning.setFont(new Font(20.0)); // set to Label
         warning.setTextAlignment(TextAlignment.CENTER);
-        VBox vbox = new VBox();
-        vbox.setAlignment(Pos.CENTER);
+        VBox top_menu = new VBox();
+        top_menu.setAlignment(Pos.CENTER);
 
-        vbox.setSpacing(10);
-        vbox.setStyle("-fx-background-color: #336699;");
+        top_menu.setSpacing(4);
+        top_menu.setStyle("-fx-background-color: #336699;");
 
-        //Hbox is a GUI elements which stacks its children horizontally
+        //HBox lays out its children in a single horizontal row
         HBox imput_fields = new HBox();
 
         //Padding makes sure that the box does not end immediately below the textfields.
@@ -116,27 +122,28 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         velocity.setPromptText("Velocity of the satellite");
         distance.setPromptText("distance from the planet");
 
-        //This will put text with the sintific notation after the imput fields
+        //This will put text with the scientific notation after the input fields
         Font size_20 = new Font(20);
 
-        Label ms = new Label("m/s");
+        Label ms = new Label("km/h");
         ms.setFont(size_20);
 
         Label kg = new Label("Kg");
         kg.setFont(size_20);
 
-        Label m  = new Label("m");
+        Label m  = new Label("km");
         m.setFont(size_20);
 
         Button save_sat = new Button("save satellite configuration");
         save_sat.setOnAction(event -> {
-            sat_event(mass, velocity, distance);
+            set_values_to_calc_sat(mass, velocity, distance);
             update_screen();
         });
 
         imput_fields.setAlignment(Pos.CENTER);
         imput_fields.getChildren().addAll(mass,kg, velocity,ms, distance,m, save_sat);
 
+        //HashMap will create a link between the name of a satellite and the weight of that satellite.
         HashMap<String, String> mass_sat_dict = new HashMap<>();
         mass_sat_dict.put("Mariner 5", "244.9");
         mass_sat_dict.put("BepiColombo", "4100");
@@ -147,15 +154,17 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         mass_sat_dict.put("Falcon Heavy","1420788");
         mass_sat_dict.put("Falcon 9","549054");
 
-        mariner_5 = create_sat_button("Mariner 5",mass_sat_dict);
-        bepicolombo = create_sat_button("BepiColombo",mass_sat_dict);
-        messenger = create_sat_button("Messenger",mass_sat_dict);
-        new_horizons = create_sat_button("New Horizons",mass_sat_dict);
-        voyager = create_sat_button("Voyager",mass_sat_dict);
-        pioneer_11 = create_sat_button("Pioneer 11",mass_sat_dict);
-        falcon_heavy = create_sat_button("Falcon Heavy",mass_sat_dict);
-        falcon_9 = create_sat_button("Falcon 9",mass_sat_dict);
+        //This creates the buttons for al the pre made sattelites so that the can be selected
+        Button mariner_5 = create_sat_button("Mariner 5",mass_sat_dict);
+        Button bepicolombo = create_sat_button("BepiColombo",mass_sat_dict);
+        Button messenger = create_sat_button("Messenger",mass_sat_dict);
+        Button new_horizons = create_sat_button("New Horizons",mass_sat_dict);
+        Button voyager = create_sat_button("Voyager",mass_sat_dict);
+        Button pioneer_11 = create_sat_button("Pioneer 11",mass_sat_dict);
+        Button falcon_heavy = create_sat_button("Falcon Heavy",mass_sat_dict);
+        Button falcon_9 = create_sat_button("Falcon 9",mass_sat_dict);
 
+        //Puts all the buttons in a horizontal layout
         HBox buttons = new HBox();
         buttons.getChildren().addAll(mariner_5,bepicolombo, messenger,new_horizons,voyager,pioneer_11,falcon_heavy,falcon_9);
         buttons.setSpacing(10);
@@ -163,27 +172,37 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         buttons.setPadding(new Insets(15, 15, 15, 15));
 
 
+        top_menu.getChildren().addAll(warning, imput_fields,buttons);
 
-        vbox.getChildren().addAll(warning, imput_fields,buttons);
-
-        return vbox;
+        return top_menu;
     }
 
 
+    /**
+     * Returns a menu which will be displayed on the left of the screen.
+     * <P>
+     *     This menu will contain 3 buttons to select a planet and 3 images to represent the planets
+     *     The elements will be stacked vertically. (VBox stacks it children vertically)
+     * </P>
+     *
+     * @return A VBox containg all elements for the left menu
+     */
     private VBox create_left_menu() {
+
+
         //Left menu
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10));
         vbox.setSpacing(15);
 
         //Projects images above the buttons
-        Image venus_image = new Image("Venus.JPG", 0, 200, true, false);
+        Image venus_image = new Image("Jpg/Venus.JPG", 0, 200, true, false);
         ImageView venus_imageVieuw = new ImageView(venus_image);
 
-        Image mercury_image = new Image("Mercury.JPG", 0, 200, true, false);
+        Image mercury_image = new Image("Jpg/Mercury.JPG", 0, 200, true, false);
         ImageView mercury_imageVieuw = new ImageView(mercury_image);
 
-        Image self_image = new Image("Own_planet.JPG", 0, 200, true, false);
+        Image self_image = new Image("Jpg/Own_planet.JPG", 0, 200, true, false);
         ImageView self_imageVieuw = new ImageView(self_image);
 
         //Creates all the buttons
@@ -200,7 +219,15 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 
     }
 
+
+    /**
+     * Creates a basic button
+     * @param name
+     * @return A basic button
+     */
     private Button create_basic_button(String name){
+
+
         Button x = new Button(name);
         x.setMinSize(180, 10);
         x.setOnAction(this);
@@ -208,7 +235,16 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         return x;
     }
 
+
+    /**
+     * Creates a button specif for the satellite configuration
+     * @param name
+     * @param dict
+     * @return A button specific for the satellites
+     */
     private Button create_sat_button(String name, HashMap dict){
+
+
         Button x = new Button(name);
         x.setMinSize(180, 10);
         x.setOnAction(event -> {
@@ -227,14 +263,22 @@ public class Main extends Application implements EventHandler<ActionEvent> {
     }
 
 
+    /**
+     * Returns what will be displayed on the center of the screen.
+     * <P>
+     *     This menu will contain information about the chosen planet, information about the chosen satellite,
+     *     the results of the calculations and a to scale animation representing the orbit of the chosen satellite.
+     * </P>
+     ** @return A menu displaying elements on the center of the screen
+     */
     private HBox create_center_menu() {
+        //ToDo change menu in something more accurate
+
         HBox hbox = new HBox();
 
-        //Padding makes sure that the box does not end immediately below the textfields.
-        //That would like very ugly
+        //Padding makes sure that the box does not end immediately below the textfield.
         hbox.setPadding(new Insets(15, 15, 15, 15));
         hbox.setSpacing(10);
-
 
 
         VBox left_box = create_center_left();
@@ -247,14 +291,26 @@ public class Main extends Application implements EventHandler<ActionEvent> {
     }
 
 
+    /**
+     * Returns what will be displayed on the left of the center of the screen.
+     * <P>
+     *     This menu will contain information about the chosen planet and information about the chosen satellite.
+     * </P>
+     *
+     * @return A menu displaying elements on the left center of the screen
+     */
     private VBox create_center_left(){
+
 
         VBox vbox = new VBox();
         vbox.setPadding(new Insets(10));
         vbox.setSpacing(15);
 
-
+        //Creates a text with information about the satellite
         Label info_sat = get_sat_info();
+
+        //creates a or text with information about the planet. Or a menu to create your own planet
+        //This is also why it is a VBox and not a label because it might not only contain a label but also 2 texfields.
         VBox info_planet = get_planetinfo();
 
         vbox.getChildren().addAll(info_planet,info_sat);
@@ -263,55 +319,335 @@ public class Main extends Application implements EventHandler<ActionEvent> {
     }
 
 
+    /**
+     * Returns what will be displayed on the center right of the screen.
+     * <P>
+     *     This menu will contain the results of the calculations
+     *     and a to scale animation of the orbit of the chosen satellite.
+     * </P>
+     *
+     * @return A menu displaying elements on the center right of the screen
+     */
     private VBox create_center_right(){
+
         VBox vbox = new VBox();
-        vbox.setPadding(new Insets(10));
-        vbox.setSpacing(15);
+
+        //Evaluates if the satellite and the planet have both been filled in
+        //If so it will calculate the request parameters and so information about the orbit of the satellite
 
         if ((to_calc_planet.getName().equals("default") == false) && to_calc_sat.getName().equals("default") == false ) {
 
-            to_calc_planet.orbit_sim(to_calc_sat);
-            double velocity = to_calc_sat.getVelocity();
+            //Calculates/receives the parameters of the orbit
+            to_calc_planet.calc_sat_parameters(to_calc_sat);
+            double velocity = to_calc_sat.getVelocity() / Math.pow(10,3);
+            double velocity_kmh = velocity * 3600;
             double mass = to_calc_sat.getMass();
-            double distance_core = to_calc_sat.getOrbit_distance();
-            double distance_surface = (distance_core - to_calc_planet.getDiameter());
-            double time_seconds = Laws.calc_orbit_time(distance_core, velocity);
+            double distance_core = to_calc_sat.getOrbit_distance() / Math.pow(10,3);
+            double distance_surface = (distance_core - (to_calc_planet.getRadius() / Math.pow(10,3)));
+            double time_seconds = Laws.calc_orbit_time((distance_core * Math.pow(10,3)), (velocity* Math.pow(10,3)));
             double time_hours = time_seconds/60/60;
 
             Label calculations = new Label();
 
-            if (velocity > 0 && distance_core > 0 && distance_surface > 0 && time_seconds > 0) {
-                String content = "The velocity or speed of the craft is " + round(velocity) + " m/s \n " +
-                        "The mass of the craft is " + round(mass) + " Kg \n" +
-                        "The distance from its surface is " + round(distance_surface) + " m" +
-                        " and from its core " + round(distance_core) + "m \n" +
-                        "It takes " + round(time_seconds) +
-                        " seconds to compleet a orbit or " + round(time_hours) + " Hours";
-                calculations.setText(content);
+            /*
+            Evaluates if the results from the calculations would be possible in reality.
+            If so displays the variables rounded in text form to the screen
+            If not displays a text saying the results would be impossible in reality and the displays the results
+            of the calculations in text form to the screen.
+            */
 
+            if (velocity > 0 && distance_core > 0 && distance_surface > 0 && time_seconds > 0) {
+                String content = "The velocity or speed of the craft is " + Round.round(velocity) + " km/s " +
+                        " which is " + Round.round(velocity_kmh) + " km/h. \n" +
+                        "The mass of the craft is " + Round.round(mass) + " Kg. \n" +
+                        "The distance from its surface is " + Round.round(distance_surface) + " km" +
+                        " and from its core " + Round.round(distance_core) + "km. \n" +
+                        "It takes " + Round.round(time_seconds) +
+                        " seconds to complete a orbit or " + Round.round(time_hours) + " Hours \n ";
+                calculations.setText(content);
 
             }
             else{
-                String content = "It is impossible to calculate the desired variable with the variables given." +
-                        " You would get the folowing which can never be true \n\n " +
-                        "The velocity or speed of the craft is " + round(velocity) + " \n " +
-                        "The mass of the craft is " + round(mass) + " \n" +
-                        "The distance from its surface is " + round(distance_surface) +
-                        " and from its core " + round(distance_core) + "\n" +
-                        "It takes " + round(time_seconds) +
-                        " seconds to compleet a orbit or " + round(time_hours) + " Hours";
+                String content = "These values would result in impossible outcomes \n" +
+                        " You would get the following values. which can never be true \n\n " +
+                        "The velocity or speed of the craft is " + Round.round(velocity) + " km/s \n " +
+                        " which is " + Round.round(velocity_kmh) + " km/h. " +
+                        "The mass of the craft is " + Round.round(mass) + " kg \n" +
+                        "The distance from its surface is " + Round.round(distance_surface) +
+                        " km and from its core " + Round.round(distance_core) + " km \n" +
+                        "It takes " + Round.round(time_seconds) +
+                        " seconds to complete a orbit or " + Round.round(time_hours) + " Hours\n ";
 
                 calculations.setText(content);
             }
 
-
-            vbox.getChildren().add(calculations);
+            //Ads both the result of the calculation and the to scale animation to the menu
+            vbox.getChildren().addAll(calculations,animation());
 
         }
-        
         return vbox;
+    }
 
 
+    /**
+     * Creates a to scale animation of the orbit
+     * <p>
+     *     Creates a to scale animation of the orbit of the satellite around the planet. With the given parameters
+     *     of both
+     * </p>
+     *
+     * @return a to scale animation of the orbit
+     */
+    private VBox animation(){
+
+        //Creates a button and a circle which will represent the satellite and planet in the animation.
+        Button sat = new Button();
+        Circle planet = new Circle();
+
+        /*
+        Creates a box where you need to fill in the size and resolution of your screen
+        This is needed so that a scale can be determent for how many pixels is 1 centimeter.
+        This is needed because for the animation de distance of the satellite needs to be given in pixels.
+        While the distance in reality is in kilometers.
+        */
+        HBox settings_box = create_setting_box();
+
+        //Creates a box in which the animation will be displayed
+        HBox animation_box = create_animation_box(planet,sat);
+
+        transition(sat,planet);
+        VBox return_box = new VBox();
+
+        return_box.getChildren().addAll(settings_box,animation_box);
+        return_box.setSpacing(10);
+
+        return return_box;
+    }
+
+
+    /**
+     * Creates a box in which the animation will be displayed
+     * @param planet
+     * @param sat
+     * @return A box for the animation to be displayed
+     */
+    private HBox create_animation_box(Circle planet, Button sat){
+
+        HBox animation_box = new HBox();
+        animation_box.setAlignment(Pos.CENTER);
+        double ppi = calc_ppi(pixel_width, pixel_height, diameter_screen);
+        double amount_pixels_for_11_cm = (ppi / 2.54) * 11;
+        //Sets the width and the height to 5 centimeters
+        animation_box.setMaxSize(amount_pixels_for_11_cm,amount_pixels_for_11_cm);
+        animation_box.setMinSize(amount_pixels_for_11_cm,amount_pixels_for_11_cm);
+
+
+        double distance = to_calc_planet.getRadius() / Math.pow(10,3);
+
+        double radius = distance_to_pixels(distance);
+
+        //Sets the maximum size of the planet to 580 pixels in diamter
+        //So that the planet will not take up the whole screen
+        if (radius > 600){
+            radius = 290;
+        }
+
+        planet.setRadius(radius);
+
+        //Sets the image of the plannet to the circle
+        if(to_calc_planet.getName().equals("Mercury")){
+            Image a = new Image("Jpg/Mercury.JPG");
+            planet.setFill(new ImagePattern(a));
+        }
+        else if(to_calc_planet.getName().equals("Venus")){
+            Image a = new Image("Jpg/Venus.JPG");
+            planet.setFill(new ImagePattern(a));
+        }
+        else {
+            Image a = new Image("Jpg/Earth.JPG");
+            planet.setFill(new ImagePattern(a));
+        }
+
+
+
+        animation_box.setStyle("-fx-background-image: url('Jpg/Space.JPG');" );
+        animation_box.getChildren().addAll(planet ,sat);
+
+        return animation_box;
+    }
+
+
+    /**
+     * Creates a box where you need to fill in the size and resolution of your screen
+     * <p>
+     *     Creates a box where you need to fill in the size and resolution of your screen
+     *     This is needed so that a scale can be determent for how many pixels is 1 centimeter.
+     *     This is needed because for the animation de distance of the satellite needs to be given in pixels.
+     *     While the distance in reality is in kilometers.
+     * </p>
+     * @return a box to fill in information about your screen
+     */
+    private HBox create_setting_box(){
+
+
+        //Creates a dropdown with the most common resolutions
+        ChoiceBox<String> resolution_menu = create_Resolution_dropdown();
+        Label resolution_menu_description = new Label("Resolution");
+        VBox res = new VBox(resolution_menu_description,resolution_menu);
+
+        //Creates a textfield to fill in you screen size (diamters across) and a label above it.
+        TextField screen_size_imput_field = new TextField("in inches");
+        screen_size_imput_field.setMaxWidth(80);
+        screen_size_imput_field.setText("15.6");
+        Label screen_size_decritpion = new Label("Screen size");
+        VBox screen = new VBox(screen_size_decritpion,screen_size_imput_field);
+
+
+        Label scale_description = new Label("Scale");
+        HBox scale_setter = new HBox();
+
+        double distance_core = to_calc_sat.getOrbit_distance() / Math.pow(10,3);
+
+        double kilometers_in_reality = get_scale(distance_core);
+        Label text = new Label("1 centimeter on screen is " +Round.round(kilometers_in_reality)+ "km in reality");
+
+
+
+        scale_setter.getChildren().addAll(text);
+        scale_setter.setSpacing(3);
+
+        VBox scale = new VBox(scale_description,scale_setter);
+
+        HBox setting_box = new HBox();
+        setting_box.setSpacing(25);
+        setting_box.getChildren().addAll(res,screen,scale);
+
+        set_global_animation_settings(kilometers_in_reality,resolution_menu,screen_size_imput_field);
+
+        return setting_box;
+    }
+
+
+    /**
+     *Creates a scale
+     *<p>
+     *Creates a scale by deviding a number by 10 until it is les than 10.
+     *Afther that it will check if the number is greater than 5 if so it will multiply it by 5.
+     *
+     *It does this so that distance/scale will never be greater than 5
+     *This is because distance/scale will result in the amount of centimeters between the satellite and
+     *the planet and this can not be greater than the size of the animation box (5 centimeters)
+     *
+     *</p>
+     * @param number_to_get_scale
+     * @return a scale
+     */
+    private double get_scale(double number_to_get_scale){
+
+
+        double new_number = number_to_get_scale;
+        double scale = 1;
+
+        while (new_number > 10) {
+            new_number = new_number / 10;
+            scale = scale * 10;
+        }
+
+        if (new_number > 5)
+            scale = scale*5;
+
+        return scale;
+
+    }
+
+
+    private void set_global_animation_settings(double kilometers_in_reality,
+                                               ChoiceBox<String> resolution, TextField screeen_size){
+
+        scale_in_km = kilometers_in_reality;
+
+        String string_resolution = resolution.getValue();
+
+        String[] resolution_split = string_resolution.split("x");
+        String pixel_width_string = resolution_split[0];
+        String pixel_hight_string = resolution_split[1];
+
+        pixel_width_string = pixel_width_string.substring(0,(pixel_width_string.length()-1));
+        pixel_hight_string = pixel_hight_string.substring(1);
+
+        pixel_width = Integer.parseInt(pixel_width_string);
+        pixel_height = Integer.parseInt(pixel_hight_string);
+
+
+        try{
+            String screeen_size_value = screeen_size.getText();
+            diameter_screen = Double.parseDouble(screeen_size_value);
+        }
+        catch (NumberFormatException e){
+            Error.number_unparasble();
+        }
+
+
+    }
+
+    private ChoiceBox<String> create_Resolution_dropdown(){
+
+        ChoiceBox<String> resolution_menu = new ChoiceBox<>();
+        resolution_menu.getItems().add("1280 x 1024");
+        resolution_menu.getItems().add("1366 x 768");
+        resolution_menu.getItems().add("1600 x 900");
+        resolution_menu.getItems().add("1920 x 1080");
+        resolution_menu.getItems().add("1920 x 1200");
+        resolution_menu.getItems().add("2560 x 1440");
+        resolution_menu.getItems().add("3440 x 1440");
+        resolution_menu.getItems().add("3840 x 2160");
+        resolution_menu.setValue("1920 x 1080");
+
+        return resolution_menu;
+    }
+
+
+    private double calc_ppi(int with_pixels, int height_pixels, double screen_size){
+
+        double pixels_diagonal_squared = Math.pow(with_pixels,2) + Math.pow(height_pixels,2);
+        double pixels_diagonal = Math.pow(pixels_diagonal_squared,0.5);
+
+        return pixels_diagonal / screen_size;
+    }
+
+
+    private double distance_to_pixels(double distance_in_km){
+
+        double ppi = calc_ppi(pixel_width, pixel_height, diameter_screen);
+        System.out.println(ppi);
+        double pixels_per_cm = ppi / 2.54;
+
+
+        double distance_in_cm = distance_in_km / scale_in_km;
+        return distance_in_cm * pixels_per_cm;
+    }
+
+
+    private void transition(Button sat, Circle planet){
+
+        double distance_in_pixels = distance_to_pixels(to_calc_sat.getOrbit_distance() / Math.pow(10,3));
+
+
+        //Create new path transition
+        PathTransition pathTransition = new PathTransition();
+        pathTransition.setDuration(Duration.millis(10000));
+        //Set node to be animated
+        pathTransition.setNode(sat);
+        //Rotate button through hbox circular path locate at (200,200) with radius 50
+        int pixel_distance_int = ((int) distance_in_pixels);
+
+        double x = planet.getLayoutY() -  planet.getRadius();
+        pathTransition.setPath(new Circle(x,planet.getLayoutY() ,pixel_distance_int));
+
+        pathTransition.setCycleCount(30);
+
+        pathTransition.play();
+        window.show();
     }
 
 
@@ -347,23 +683,32 @@ public class Main extends Application implements EventHandler<ActionEvent> {
     }
 
 
-    private void sat_event(TextField mass_text_field, TextField velocity_text_field, TextField distance_text_field) {
+    private void set_values_to_calc_sat(TextField mass_text_field, TextField velocity_text_field, TextField distance_text_field) {
         try {
             double mass = Double.parseDouble(mass_text_field.getText());
-            double velocity = Double.parseDouble(velocity_text_field.getText());
-            double distance = Double.parseDouble(distance_text_field.getText());
+            double velocity = (Double.parseDouble(velocity_text_field.getText()) / 3.6 );
+            double distance = (Double.parseDouble(distance_text_field.getText()) * Math.pow(10,3));
 
-            if (mass * velocity * distance != 0) {
-                System.out.println("Error non of your values are 0 which means it can not be determend." +
-                        " which variable you want to calculate");
+            if(mass == 0){
+                Error.zero_mass();
+            }
+
+            if (velocity * distance != 0) {
+                Error.non_zero_values();
                 to_calc_sat = new Satellite (0,0,0,"default");
-            } else {
+            }
+
+            else if((velocity + distance) == 0 ){
+                Error.two_zero();
+            }
+
+            else {
                 to_calc_sat = new Satellite(mass, velocity, distance,"Self made");
 
             }
 
         } catch (NumberFormatException e) {
-            System.out.println("works not which means it work");
+            Error.number_unparasble();
         }
 
     }
@@ -420,8 +765,8 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 
         if (to_calc_planet.getName().equals("Mercury")){
             String content =  "Mercury \n" +
-                    "Mass   : 3.3011 * 10^24 \n" +
-                    "Radius : 2439.7 Km \n \n" +
+                    "Mass   : 3.3011 * 10^24 Kg\n" +
+                    "Radius : 2439.7 km \n \n" +
 
                     "Mercury is the smallest and innermost planet in the Solar System." +
                     " Its orbital period around the Sun of 87.97 days" +
@@ -449,9 +794,13 @@ public class Main extends Application implements EventHandler<ActionEvent> {
             Label mass_label =   new Label("Mass   : ");
             Label radius_label = new Label("Radius : ");
             Label kg = new Label("Kg");
-            Label m = new Label("m");
+            Label m = new Label("km");
             TextField mass_imput_field = new TextField();
             TextField radius_imput_field = new TextField();
+
+            mass_imput_field.setText(Double.toString(to_calc_planet.getMass()));
+            radius_imput_field.setText(Double.toString(to_calc_planet.getRadius() / Math.pow(10,3)));
+
             Button save = new Button("save");
             save.setOnAction(event -> {
                 try {
@@ -459,12 +808,14 @@ public class Main extends Application implements EventHandler<ActionEvent> {
                     double radius_selfmade_planet = Double.parseDouble(radius_imput_field.getText());
 
                     to_calc_planet.setMass(mass_selfmade_planet);
-                    to_calc_planet.setDiameter(radius_selfmade_planet);
+                    to_calc_planet.setRadius(radius_selfmade_planet *  Math.pow(10,3));
 
 
                 } catch (NumberFormatException e) {
-                    System.out.println("Error when creating planet");
+                    Error.number_unparasble();
                 }
+
+                update_screen();
 
             });
 
@@ -472,8 +823,16 @@ public class Main extends Application implements EventHandler<ActionEvent> {
             mass_Hbox.setSpacing(10);
             HBox radius_Hbox = new HBox(radius_label,radius_imput_field,m,save);
             radius_Hbox.setSpacing(10);
+            if ((to_calc_planet.getRadius() != 0) && (to_calc_planet.getMass() != 0 )){
+                String info = "The mass of your self made planet is " +
+                        Round.round(to_calc_planet.getMass()) + "Kg \n" + "The radius of your planet is "
+                        + Round.round(to_calc_planet.getRadius() / Math.pow(10,3)) + " km'\n ";
 
-            v.getChildren().addAll(mass_Hbox,radius_Hbox);
+                planet_info.setText(info);
+
+            }
+
+            v.getChildren().addAll(mass_Hbox,radius_Hbox,planet_info);
             v.setSpacing(10);
 
 
@@ -539,7 +898,7 @@ public class Main extends Application implements EventHandler<ActionEvent> {
         if(sat_non_custom_name.equals("New Horizons")){
             String info = "New Horizons \n\n" +
                     "the spacecraft was launched in 2006" +
-                    " with the primary mission to perform a flyby study of the Pluto system in 2015," +
+                    " with the primary mission to perform a flyby study of the Pluto system in 2015 " +
                     " and a secondary mission to fly by and study one or more other Kuiper belt objects" +
                     " in the decade to follow," +
                     " It is the fifth space probe to achieve the escape velocity needed to leave the Solar System." +
@@ -622,48 +981,8 @@ public class Main extends Application implements EventHandler<ActionEvent> {
 
     }
 
-    private static String round(double value) {
 
-        String textfrom = Double.toString(value);
-        String[] decimal_split = textfrom.split("\\.");
-        String before_decimal = decimal_split[0];
 
-        int length = before_decimal.length();
-
-        if (length>5) {
-            double a = Math.pow(10, (length - 1));
-            double new_value = value / a;
-            return String.format("%.3f", new_value) + " * 10^" + (length - 1);
-
-        }
-        else if (length == 1){
-
-            String[] new_text = textfrom.split("E");
-
-            if(new_text.length != 1) {
-
-                String number = new_text[0];
-                String power = new_text[1];
-
-                //Todo make this more efficient
-                double a = Double.parseDouble(number);
-
-                return number.format("%.3f", a) + " * 10^" + power;
-            }
-
-            else{
-
-                return String.format("%.3f", value);
-
-            }
-        }
-
-        else{
-
-            return String.format("%.3f", value) ;
-        }
-
-    }
 }
 
 

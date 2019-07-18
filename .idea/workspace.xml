@@ -17,74 +17,144 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="148">
-              <caret line="511" column="42" selection-start-line="511" selection-start-column="42" selection-end-line="511" selection-end-column="42" />
+            <state relative-caret-position="17">
+              <caret line="28" selection-start-line="28" selection-end-line="28" />
               <folding>
                 <element signature="method#main#0;class#Main#0" />
                 <element signature="method#start#0;class#Main#0" />
-                <element signature="method#create_top_menu#0;class#Main#0" />
+                <element signature="docComment;method#create_left_menu#0;class#Main#0" />
                 <element signature="method#create_left_menu#0;class#Main#0" />
+                <element signature="docComment;method#create_basic_button#0;class#Main#0" />
                 <element signature="method#create_basic_button#0;class#Main#0" />
+                <element signature="docComment;method#create_sat_button#0;class#Main#0" />
                 <element signature="method#create_sat_button#0;class#Main#0" />
+                <element signature="e#7164#7378#0" />
+                <element signature="docComment;method#create_center_menu#0;class#Main#0" />
                 <element signature="method#create_center_menu#0;class#Main#0" />
+                <element signature="docComment;method#create_center_left#0;class#Main#0" />
                 <element signature="method#create_center_left#0;class#Main#0" />
+                <element signature="e#10308#10397#0" />
+                <element signature="docComment;method#create_center_right#0;class#Main#0" />
+                <element signature="method#create_center_right#0;class#Main#0" />
+                <element signature="e#11128#11196#0" />
+                <element signature="e#10755#13154#1" />
+                <element signature="e#12154#12490#0" />
+                <element signature="e#11494#12193#1" />
+                <element signature="e#12210#13076#1" />
+                <element signature="docComment;method#animation#0;class#Main#0" />
+                <element signature="method#animation#0;class#Main#0" />
+                <element signature="e#14945#15290#0" />
+                <element signature="docComment;method#create_animation_box#0;class#Main#0" />
+                <element signature="method#create_animation_box#0;class#Main#0" />
+                <element signature="e#16122#16184#0" />
+                <element signature="e#11560#11597#1" />
+                <element signature="e#11733#11845#1" />
+                <element signature="e#11903#12013#1" />
+                <element signature="e#12027#12137#1" />
+                <element signature="docComment;method#create_setting_box#0;class#Main#0" />
+                <element signature="method#create_setting_box#0;class#Main#0" />
+                <element signature="docComment;method#get_scale#0;class#Main#0" />
+                <element signature="method#get_scale#0;class#Main#0" />
+                <element signature="e#19364#19449#1" />
+                <element signature="method#set_global_animation_settings#0;class#Main#0" />
+                <element signature="e#14767#14911#0" />
+                <element signature="e#14951#15001#0" />
+                <element signature="method#create_Resolution_dropdown#0;class#Main#0" />
+                <element signature="method#calc_ppi#0;class#Main#0" />
+                <element signature="method#distance_to_pixels#0;class#Main#0" />
+                <element signature="method#transition#0;class#Main#0" />
                 <element signature="method#handle#0;class#Main#0" />
+                <element signature="e#17221#17484#1" />
+                <element signature="e#17524#17802#1" />
+                <element signature="e#17851#17923#1" />
                 <element signature="method#update_screen#0;class#Main#0" />
-                <element signature="method#sat_event#0;class#Main#0" />
+                <element signature="method#set_values_to_calc_sat#0;class#Main#0" />
+                <element signature="e#18214#18946#0" />
+                <element signature="e#18505#18555#1" />
+                <element signature="e#18599#18718#1" />
+                <element signature="e#18768#18817#1" />
+                <element signature="e#18836#18935#1" />
+                <element signature="e#18979#19029#0" />
                 <element signature="method#get_planetinfo#0;class#Main#0" />
-                <element signature="method#round#0;class#Main#0" />
+                <element signature="e#19411#20050#1" />
+                <element signature="e#20105#22159#1" />
+                <element signature="e#22216#23889#1" />
+                <element signature="e#29476#31373#1" />
+                <element signature="e#24521#25076#0" />
+                <element signature="e#24552#24928#0" />
+                <element signature="e#24961#25027#0" />
+                <element signature="e#30925#31259#1" />
+                <element signature="method#get_sat_info#0;class#Main#0" />
+                <element signature="e#26187#27270#1" />
+                <element signature="e#27325#28123#1" />
+                <element signature="e#28176#29190#1" />
+                <element signature="e#29246#30419#1" />
+                <element signature="e#30470#32259#1" />
+                <element signature="e#32313#33301#1" />
+                <element signature="e#33357#34366#1" />
+                <element signature="e#34418#35122#1" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Notes">
+        <entry file="file://$PROJECT_DIR$/src/Round.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/No_Moon_Planet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-549">
-              <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
+            <state relative-caret-position="17">
+              <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
               <folding>
-                <element signature="e#312#313#0" expanded="true" />
-                <element signature="e#344#345#0" expanded="true" />
-                <element signature="e#410#411#0" expanded="true" />
-                <element signature="e#458#459#0" expanded="true" />
-                <element signature="e#498#499#0" expanded="true" />
-                <element signature="e#529#530#0" expanded="true" />
-                <element signature="e#556#557#0" expanded="true" />
-                <element signature="e#596#597#0" expanded="true" />
-                <element signature="e#628#629#0" expanded="true" />
-                <element signature="e#659#660#0" expanded="true" />
-                <element signature="e#686#687#0" expanded="true" />
-                <element signature="e#726#727#0" expanded="true" />
-                <element signature="e#758#759#0" expanded="true" />
+                <element signature="method#round#0;class#Round#0" />
+                <element signature="e#297#481#1" />
+                <element signature="e#511#1264#1" />
+                <element signature="e#605#1040#1" />
+                <element signature="e#825#936#1" />
+                <element signature="e#1058#1254#1" />
+                <element signature="e#1110#1186#1" />
+                <element signature="e#1278#1455#1" />
+                <element signature="e#1327#1395#1" />
+                <element signature="method#check_if_decimals_zero#0;class#Round#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Laws.java">
+        <entry file="file://$PROJECT_DIR$/src/Error.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-141">
-              <caret line="1" column="30" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
+            <state relative-caret-position="357">
+              <caret line="39" column="82" selection-start-line="39" selection-start-column="82" selection-end-line="39" selection-end-column="82" />
+              <folding>
+                <element signature="method#non_zero_values#0;class#Error#0" />
+                <element signature="method#zero_mass#0;class#Error#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Satellite.java">
+        <entry file="file://$PROJECT_DIR$/src/Backend/Satellite.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="34">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Backend/Laws.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="10" column="83" selection-start-line="10" selection-start-column="83" selection-end-line="10" selection-end-column="83" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Backend/No_Moon_Planet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="459">
+              <caret line="41" column="10" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -101,6 +171,15 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>works</find>
+      <find>Math</find>
+      <find>15</find>
+      <find>100</find>
+      <find>textfield</find>
+      <find>try</find>
+      <find>System.out</find>
+      <find>catch</find>
+      <find>It's</find>
+      <find>!=</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -117,6 +196,14 @@
         <option value="$PROJECT_DIR$/src/Satellite.java" />
         <option value="$PROJECT_DIR$/src/Notes" />
         <option value="$PROJECT_DIR$/src/No_Moon_Planet.java" />
+        <option value="$PROJECT_DIR$/src/Errors.java" />
+        <option value="$PROJECT_DIR$/src/Backend/No_Moon_Planet.java" />
+        <option value="$PROJECT_DIR$/src/Backend/Laws.java" />
+        <option value="$PROJECT_DIR$/src/Error.java" />
+        <option value="$PROJECT_DIR$/src/left_menu.java" />
+        <option value="$PROJECT_DIR$/src/round.java" />
+        <option value="$PROJECT_DIR$/src/Round.java" />
+        <option value="$PROJECT_DIR$/src/Top_menu.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
       </list>
     </option>
@@ -131,8 +218,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -149,17 +234,28 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$USER_HOME$/IdeaProjects/Java" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\lucas\Documents\GitHub\IPASS\src\Jpg" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -215,18 +311,41 @@
       <workItem from="1561996201686" duration="6897000" />
       <workItem from="1562064579219" duration="7958000" />
       <workItem from="1562095557295" duration="183000" />
-      <workItem from="1562148709631" duration="1054000" />
+      <workItem from="1562148709631" duration="3035000" />
+      <workItem from="1562236756456" duration="1534000" />
+      <workItem from="1562525046335" duration="1818000" />
+      <workItem from="1562589432967" duration="661000" />
+      <workItem from="1562677200761" duration="5873000" />
+      <workItem from="1562843777223" duration="971000" />
+      <workItem from="1562846099866" duration="106000" />
+      <workItem from="1562846360923" duration="3917000" />
+      <workItem from="1562957164299" duration="648000" />
+      <workItem from="1563018983437" duration="7397000" />
+      <workItem from="1563112194159" duration="2365000" />
+      <workItem from="1563131458359" duration="4460000" />
+      <workItem from="1563198505342" duration="13576000" />
+      <workItem from="1563270215163" duration="11564000" />
+      <workItem from="1563452794239" duration="8799000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92941000" />
+    <option name="totallyTimeSpent" value="158611000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.152349" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18255034" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -236,14 +355,14 @@
       <window_info id="Learn" order="7" weight="0.33355704" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39943343" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3286119" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.25070822" />
       <window_info anchor="bottom" id="Database Changes" order="11" />
       <window_info anchor="bottom" id="Version Control" order="12" />
@@ -257,6 +376,7 @@
       <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" x="0" y="0" width="337" height="638" id="Documentation" order="9" side_tool="true" weight="0.3295302" />
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.152349" />
@@ -297,17 +417,7 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/number.java" />
-    <entry file="file://$PROJECT_DIR$/src/Two_Moon_Planet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI.java" />
-    <entry file="file://$PROJECT_DIR$/src/One_Moon_Planet.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/javafx-src.zip!/javafx/scene/layout/VBox.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="227">
@@ -336,60 +446,181 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Satellite.java">
+    <entry file="file://$PROJECT_DIR$/src/Backend/Two_Moon_Planet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/No_Moon_Planet.java">
+    <entry file="file://$PROJECT_DIR$/src/Position.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_211/javafx-src.zip!/javafx/scene/control/ChoiceBox.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-549">
-          <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
+        <state relative-caret-position="1424">
+          <caret line="273" column="35" selection-start-line="273" selection-start-column="35" selection-end-line="273" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Backend/One_Moon_Planet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Error.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="39" column="82" selection-start-line="39" selection-start-column="82" selection-end-line="39" selection-end-column="82" />
           <folding>
-            <element signature="e#312#313#0" expanded="true" />
-            <element signature="e#344#345#0" expanded="true" />
-            <element signature="e#410#411#0" expanded="true" />
-            <element signature="e#458#459#0" expanded="true" />
-            <element signature="e#498#499#0" expanded="true" />
-            <element signature="e#529#530#0" expanded="true" />
-            <element signature="e#556#557#0" expanded="true" />
-            <element signature="e#596#597#0" expanded="true" />
-            <element signature="e#628#629#0" expanded="true" />
-            <element signature="e#659#660#0" expanded="true" />
-            <element signature="e#686#687#0" expanded="true" />
-            <element signature="e#726#727#0" expanded="true" />
-            <element signature="e#758#759#0" expanded="true" />
+            <element signature="method#non_zero_values#0;class#Error#0" />
+            <element signature="method#zero_mass#0;class#Error#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Laws.java">
+    <entry file="file://$PROJECT_DIR$/src/Backend/Satellite.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-141">
-          <caret line="1" column="30" selection-start-line="1" selection-start-column="30" selection-end-line="1" selection-end-column="30" />
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Backend/Laws.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="83" selection-start-line="10" selection-start-column="83" selection-end-line="10" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Backend/No_Moon_Planet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="41" column="10" selection-start-line="41" selection-start-column="10" selection-end-line="41" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/left_menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Round.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="10" />
+          <folding>
+            <element signature="method#round#0;class#Round#0" />
+            <element signature="e#297#481#1" />
+            <element signature="e#511#1264#1" />
+            <element signature="e#605#1040#1" />
+            <element signature="e#825#936#1" />
+            <element signature="e#1058#1254#1" />
+            <element signature="e#1110#1186#1" />
+            <element signature="e#1278#1455#1" />
+            <element signature="e#1327#1395#1" />
+            <element signature="method#check_if_decimals_zero#0;class#Round#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Top_menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1104">
+          <caret line="24" column="35" lean-forward="true" selection-start-line="24" selection-start-column="35" selection-end-line="24" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;method#create_top_menu#0;class#Top_menu#0" />
+            <element signature="e#557#938#0" />
+            <element signature="e#1660#1740#0" />
+            <element signature="e#2612#2723#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="511" column="42" selection-start-line="511" selection-start-column="42" selection-end-line="511" selection-end-column="42" />
+        <state relative-caret-position="17">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
           <folding>
             <element signature="method#main#0;class#Main#0" />
             <element signature="method#start#0;class#Main#0" />
-            <element signature="method#create_top_menu#0;class#Main#0" />
+            <element signature="docComment;method#create_left_menu#0;class#Main#0" />
             <element signature="method#create_left_menu#0;class#Main#0" />
+            <element signature="docComment;method#create_basic_button#0;class#Main#0" />
             <element signature="method#create_basic_button#0;class#Main#0" />
+            <element signature="docComment;method#create_sat_button#0;class#Main#0" />
             <element signature="method#create_sat_button#0;class#Main#0" />
+            <element signature="e#7164#7378#0" />
+            <element signature="docComment;method#create_center_menu#0;class#Main#0" />
             <element signature="method#create_center_menu#0;class#Main#0" />
+            <element signature="docComment;method#create_center_left#0;class#Main#0" />
             <element signature="method#create_center_left#0;class#Main#0" />
+            <element signature="e#10308#10397#0" />
+            <element signature="docComment;method#create_center_right#0;class#Main#0" />
+            <element signature="method#create_center_right#0;class#Main#0" />
+            <element signature="e#11128#11196#0" />
+            <element signature="e#10755#13154#1" />
+            <element signature="e#12154#12490#0" />
+            <element signature="e#11494#12193#1" />
+            <element signature="e#12210#13076#1" />
+            <element signature="docComment;method#animation#0;class#Main#0" />
+            <element signature="method#animation#0;class#Main#0" />
+            <element signature="e#14945#15290#0" />
+            <element signature="docComment;method#create_animation_box#0;class#Main#0" />
+            <element signature="method#create_animation_box#0;class#Main#0" />
+            <element signature="e#16122#16184#0" />
+            <element signature="e#11560#11597#1" />
+            <element signature="e#11733#11845#1" />
+            <element signature="e#11903#12013#1" />
+            <element signature="e#12027#12137#1" />
+            <element signature="docComment;method#create_setting_box#0;class#Main#0" />
+            <element signature="method#create_setting_box#0;class#Main#0" />
+            <element signature="docComment;method#get_scale#0;class#Main#0" />
+            <element signature="method#get_scale#0;class#Main#0" />
+            <element signature="e#19364#19449#1" />
+            <element signature="method#set_global_animation_settings#0;class#Main#0" />
+            <element signature="e#14767#14911#0" />
+            <element signature="e#14951#15001#0" />
+            <element signature="method#create_Resolution_dropdown#0;class#Main#0" />
+            <element signature="method#calc_ppi#0;class#Main#0" />
+            <element signature="method#distance_to_pixels#0;class#Main#0" />
+            <element signature="method#transition#0;class#Main#0" />
             <element signature="method#handle#0;class#Main#0" />
+            <element signature="e#17221#17484#1" />
+            <element signature="e#17524#17802#1" />
+            <element signature="e#17851#17923#1" />
             <element signature="method#update_screen#0;class#Main#0" />
-            <element signature="method#sat_event#0;class#Main#0" />
+            <element signature="method#set_values_to_calc_sat#0;class#Main#0" />
+            <element signature="e#18214#18946#0" />
+            <element signature="e#18505#18555#1" />
+            <element signature="e#18599#18718#1" />
+            <element signature="e#18768#18817#1" />
+            <element signature="e#18836#18935#1" />
+            <element signature="e#18979#19029#0" />
             <element signature="method#get_planetinfo#0;class#Main#0" />
-            <element signature="method#round#0;class#Main#0" />
+            <element signature="e#19411#20050#1" />
+            <element signature="e#20105#22159#1" />
+            <element signature="e#22216#23889#1" />
+            <element signature="e#29476#31373#1" />
+            <element signature="e#24521#25076#0" />
+            <element signature="e#24552#24928#0" />
+            <element signature="e#24961#25027#0" />
+            <element signature="e#30925#31259#1" />
+            <element signature="method#get_sat_info#0;class#Main#0" />
+            <element signature="e#26187#27270#1" />
+            <element signature="e#27325#28123#1" />
+            <element signature="e#28176#29190#1" />
+            <element signature="e#29246#30419#1" />
+            <element signature="e#30470#32259#1" />
+            <element signature="e#32313#33301#1" />
+            <element signature="e#33357#34366#1" />
+            <element signature="e#34418#35122#1" />
           </folding>
         </state>
       </provider>
